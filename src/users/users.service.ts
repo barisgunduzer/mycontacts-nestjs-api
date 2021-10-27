@@ -35,7 +35,7 @@ export class UsersService {
     return await this.userModel.updateMany(
       {},
       {
-        $set: { type: name }, // TODO: (To fix) Mongodb bulk write function not working properly
+        $set: { type: name }, // TODO: (To fix) Mongodb bulk write function not working as expected
       },
       { strict: false },
     );
