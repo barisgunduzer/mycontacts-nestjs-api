@@ -27,17 +27,17 @@ export class UsersService {
 
   // This action updates a user
   async update(id: string, updateUserDto: UpdateUserDto) {
-    // eslint-disable-next-line prettier/prettier
     return await this.userModel.findByIdAndUpdate(id, updateUserDto, {new: true})
   }
 
   // This action add a new field to all users
-  async addField(type: string) {
+  async addField(type: string, name: string) {
     return await this.userModel.updateMany(
       {},
       {
-        $set: { [type]: [type] },
+        $set: { type: name }, // TODO: (To fix) Mongodb bulk write function not working properly
       },
+      { strict: false },
     );
   }
 

@@ -72,10 +72,14 @@ export class UsersController {
   @ApiOperation({ summary: 'This method adds a new user field' })
   @ApiCreatedResponse({ description: 'field created'})
   @ApiResponse({ status: 400, description: 'invalid input'})
-  @ApiResponse({ status: 409, description: 'field already exists'})  
-  async addField(@Res() res, @Query('type') type: DataType = DataType.String) {
+  @ApiResponse({ status: 409, description: 'field already exists'})
+  async addField(
+    @Res() res,
+    @Query('type') type: DataType,
+    @Query('name') name: string,
+  ) {
     try {
-      await this.usersService.addField(type);
+      await this.usersService.addField(type, name);
       return res.status(HttpStatus.OK).json({
         success: 'new user field added succesfully',
       });
@@ -89,10 +93,8 @@ export class UsersController {
 
   @Put('/:id')
   @ApiOperation({ summary: 'This method updates a user by id param' })
-  //@ApiParam({name: 'type', description: 'Define additional info type', schema: { oneOf: [{type: 'string'}, {type: 'integer'}]}})
   @ApiResponse({ status: 200, description: 'user updated'})
   @ApiResponse({ status: 400, description: 'invalid id supplied'})
-  // eslint-disable-next-line prettier/prettier
   async update(@Res() res, @Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     try {
       const updatedUser = await this.usersService.update(id, updateUserDto);

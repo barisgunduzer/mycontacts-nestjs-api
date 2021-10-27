@@ -16,6 +16,7 @@ async function bootstrap() {
     .setContact('Swagger', 'http://swagger.io', 'apiteam@swagger.io')
     .build();
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT || 5000);

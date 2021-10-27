@@ -1,8 +1,6 @@
-// eslint-disable-next-line prettier/prettier
-import { IsString, IsNotEmpty, IsOptional, IsNumber, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { DataType } from './properties/properties';
-
 export class CreateUserDto {
   @ApiProperty({
     type: String,
