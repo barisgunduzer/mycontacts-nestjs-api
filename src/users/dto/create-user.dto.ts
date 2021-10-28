@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEmail, MinLength, MaxLength, maxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { DataType } from './properties/properties';
 export class CreateUserDto {
@@ -44,7 +44,10 @@ export class CreateUserDto {
   @IsEmail()
   email: string;
 
-
-  //@ApiProperty({ enum: ['string', 'number', 'boolean']})
-  //type: DataType;
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsNotEmpty()
+  gender: string;
 }

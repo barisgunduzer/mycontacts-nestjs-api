@@ -3,7 +3,6 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiCreatedResponse, ApiOperation, ApiResponse, ApiTags, ApiQuery } from '@nestjs/swagger';
-import { DataType } from './dto/properties/properties';
 
 @ApiTags('users')
 @Controller('users')
@@ -72,7 +71,7 @@ export class UsersController {
   @ApiCreatedResponse({ description: 'field created'})
   @ApiResponse({ status: 400, description: 'invalid input'})
   @ApiResponse({ status: 409, description: 'field already exists'})
-  async addField(@Res() res, @Query('key') key: string) {
+  async addField(@Res() res, @Param('key') key: string) {
     try {
       await this.usersService.addField(key);
       return res.status(HttpStatus.OK).json({
