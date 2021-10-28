@@ -27,20 +27,19 @@ export class UsersService {
 
   // This action updates a user
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return await this.userModel.findByIdAndUpdate(id, updateUserDto, {new: true})
+    return await this.userModel.findByIdAndUpdate(id, updateUserDto, {
+      new: true,
+    });
   }
 
   // This action add a new field to all users
-  async addField(type: string, name: string) {
+  async addField(key: string) {
     return await this.userModel.updateMany(
       {},
-      {
-        $set: { type: name }, // TODO: (To fix) Mongodb bulk write function not working as expected
-      },
-      { strict: false },
+      { $set: { [key]: '' } },
+      { upsert: true, strict: false },
     );
   }
-
   // This action removes a user
   async remove(id: string) {
     return await this.userModel.findByIdAndRemove(id);

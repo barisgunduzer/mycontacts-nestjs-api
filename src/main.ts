@@ -23,7 +23,7 @@ async function bootstrap() {
   console.log(
     `Swagger Mycontacts API 👾 is running on: ${await app.getUrl()}/api`
   );
-
+  
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());

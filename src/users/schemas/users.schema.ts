@@ -15,10 +15,10 @@ export class User {
   address: string;
 
   @Prop({ required: true })
-  last_name: string;
+  lastName: string;
 
   @Prop({ required: true })
-  first_name: string;
+  firstName: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

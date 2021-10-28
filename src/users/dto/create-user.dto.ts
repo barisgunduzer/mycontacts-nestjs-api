@@ -10,31 +10,22 @@ export class CreateUserDto {
   @IsString()
   @MinLength(2)
   @MaxLength(20)
-  first_name: string;
+  firstName: string;
 
   @ApiProperty({
     type: String,
     required: true,
   })
-
   @IsNotEmpty()
   @IsString()
   @MinLength(2)
   @MaxLength(20)
-  last_name: string;
+  lastName: string;
 
   @IsString()
   @MaxLength(60)
   @IsNotEmpty()
   address: string;
-
-  @ApiProperty({
-    type: String,
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsEmail()
-  email: string;
 
   @ApiProperty({
     type: Number,
@@ -45,6 +36,15 @@ export class CreateUserDto {
   @MinLength(11)
   phone: number;
 
-  @ApiProperty({ enum: ['string', 'number', 'boolean']})
-  type: DataType;
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+
+  //@ApiProperty({ enum: ['string', 'number', 'boolean']})
+  //type: DataType;
 }
